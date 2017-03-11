@@ -8,8 +8,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: [{title: 'Star Wars', year: 2015, id:'1'}, {title: 'Sharknado', year: 2013, id:'2'}]
+      items: [];
     }
+  }
+
+  onAddClick (movie) {
+    console.log(`${movie} was posted to server/database`);
+    $.ajax({
+      type: 'POST',
+      url: 'http://127.0.0.1:3000/entry',
+      ContentType: ''
+    })
   }
 
   search (term) {
@@ -36,13 +45,7 @@ class App extends React.Component {
       type: 'GET',
       url: 'http://127.0.0.1:3000/items',
       ContentType: 'text/plain',
-/*      headers: {
-        'Access-Control-Allow-Origin': 'null',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-MEthods': '*'
-      },*/
       success: (data) => {
-        /*console.log(JSON.parse(data).Search);*/
         console.log(data)
         this.setState({
           items: data
