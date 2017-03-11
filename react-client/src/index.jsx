@@ -20,7 +20,12 @@ class App extends React.Component {
     $.ajax({
       type: 'GET',
       url: 'http://127.0.0.1:3000/items',
-      contentType: 'application/json',
+      ContentType: 'text/plain',
+/*      headers: {
+        'Access-Control-Allow-Origin': 'null',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-MEthods': '*'
+      },*/
       success: (data) => {
         this.setState({
           items: data
