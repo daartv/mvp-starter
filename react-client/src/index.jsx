@@ -9,19 +9,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: [],
-      fetched: [{Title:'Justice League', Year: '2017'}, {Title:'Spiderman', Year:'2017'}]
+      items: [{Title:'Justice League', Year: '2017', imdbID: '34324'}, {Title:'Spiderman', Year:'2017', imdbID: '2352432'}],
+      fetched: []
     }
   }
 
-  onAddClick (movie) {
-    console.log(`${movie} was posted to server/database`);
-    $.ajax({
-      type: 'POST',
-      url: 'http://127.0.0.1:3000/entry',
-      ContentType: ''
-    })
-  }
 
   search (term) {
     console.log(`${term} was searched`);
@@ -42,6 +34,22 @@ class App extends React.Component {
     });
   }
 
+  onAddClick (movieID) {
+    console.log(`${movieID} was posted to server/database`);
+    $.ajax({
+      type: 'POST',
+      url: 'http://127.0.0.1:3000/entry',
+      ContentType: 'text/plain',
+      data: movieID,
+      success: (data) => {
+        console.log('Response from the add button post', data);
+      },
+      error: (error) => {
+        console.log('Errored out from add button post', error);
+      }
+    });
+  }
+  
   componentDidMount() {
     $.ajax({
       type: 'GET',
@@ -63,8 +71,8 @@ class App extends React.Component {
     return (<div>
       <Search onSearch={this.search.bind(this)}/>
       <h1>Enjoy your Sunday:</h1>
-      <List items={this.state.items}/>
-      <FetchList fetched={this.state.fetched}/>
+      <List items={this.state.items} onClick={this.onAddClick.bind(this)} />
+      <FetchList fetched={this.state.fetched} />
     </div>)
   }
 }
