@@ -1,13 +1,13 @@
-DROP DATABASE IF EXISTS test;
+DROP DATABASE IF EXISTS YMDB;
 
-CREATE DATABASE test;
+CREATE DATABASE YMDB;
 
-USE test;
+USE YMDB;
 
-CREATE TABLE items (
+CREATE TABLE movies (
   id int NOT NULL AUTO_INCREMENT,
-  quantity integer NOT NULL,
-  description varchar(50) NOT NULL,
+  title VARCHAR(200) UNIQUE NOT NULL,
+  year varchar(50) NOT NULL,
   PRIMARY KEY (ID)
 );
 
