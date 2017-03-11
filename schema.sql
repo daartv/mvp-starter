@@ -6,8 +6,8 @@ USE YMDB;
 
 CREATE TABLE movies (
   id int NOT NULL AUTO_INCREMENT,
-  title VARCHAR(200) UNIQUE NOT NULL,
-  year varchar(50) NOT NULL,
+  Title VARCHAR(200) UNIQUE NOT NULL,
+  Year varchar(50) NOT NULL,
   PRIMARY KEY (ID)
 );
 

@@ -12,7 +12,7 @@ var headers = {
 };
 
 var initialOptions = {
-  url: 'http://www.omdbapi.com/?t=Star+Wars',
+  url: 'http://www.omdbapi.com/?s=Star+Wars',
 }
 
 var app = express();
@@ -21,35 +21,37 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
+//handles the get request on initialization of the app
 app.get('/items', function (req, res) {
   
-  request(initialOptions, function (error, response, body) {
-    console.log(body);
-  })
+/*  request(initialOptions, function (error, response, body) {
+    res.status(200).set(headers).send(body);
+  })*/
 
-
-
-
-
-
-
-/*  items.selectAll(function(err, data) {
+  items.selectAll(function(err, data) {
     if(err) {
       res.sendStatus(500);
     } else {
       res.set(headers)
       res.status(200)
-      res.json(data);
+      res.send(data);
     }
-  });*/
-
-  res.status(200).set(headers).send([{title:'PRUEBA', year: '1992'}]);
+  });
 });
-/*app.options('/items', function(req, res){
-  console.log('OPTIONS')
-  res.writeHead(200, headers);
-  res.end();
-})*/
+
+app.post('/items', function (req, res) {
+  var title = '';
+  req.on('data', function (chunk) {
+    title += chunk;
+    console.log(title);
+    var searchOptions = {
+      url: `http://www.omdbapi.com/?s=${title}`
+    }
+    request(searchOptions, function (error, response, body) {
+      res.status(201).set(headers).send(body);
+    })
+  })
+})
 
 app.get('/home', function(req, res) {
 /*  console.log('hey');

@@ -14,6 +14,21 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
+    $.ajax({
+      type:'POST',
+      url:'http://127.0.0.1:3000/items',
+      ContentType: 'text/plain',
+      data: term,
+      success: (data) => {
+        console.log('Response from the post', data);
+        this.setState({
+          items: JSON.parse(data).Search
+        })
+      },
+      error: (err) => {
+        console.log('Errored out from the post', err);
+      }
+    });
   }
 
   componentDidMount() {
@@ -27,6 +42,8 @@ class App extends React.Component {
         'Access-Control-Allow-MEthods': '*'
       },*/
       success: (data) => {
+        /*console.log(JSON.parse(data).Search);*/
+        console.log(data)
         this.setState({
           items: data
         })
@@ -40,7 +57,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <Search onSearch={this.search.bind(this)}/>
-      <h1>Your movies:</h1>
+      <h1>Enjoy your Sunday:</h1>
       <List items={this.state.items}/>
     </div>)
   }
