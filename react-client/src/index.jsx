@@ -9,11 +9,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: [{Title:'Justice League', Year: '2017', imdbID: '34324'}, {Title:'Spiderman', Year:'2017', imdbID: '2352432'}],
+      items: [],
       fetched: []
     }
   }
-
 
   search (term) {
     console.log(`${term} was searched`);
@@ -49,7 +48,23 @@ class App extends React.Component {
       }
     });
   }
-  
+
+  onWatchedClick(movieTitle) {
+  /*  console.log(`${movieTitle} was posted to server/database for deleting`);*/
+    $.ajax({
+      type: 'POST',
+      url: 'http://127.0.0.1:3000/watch',
+      ContentType:'text/plain',
+      data: movieTitle,
+      success: (data) => {
+        console.log('Response from watched button post');
+      },
+      error: (error) => {
+        console.log('Errored out from watched button post');
+      }
+    });
+  }
+
   componentDidMount() {
     $.ajax({
       type: 'GET',
@@ -72,7 +87,7 @@ class App extends React.Component {
       <Search onSearch={this.search.bind(this)}/>
       <h1>Enjoy your Sunday:</h1>
       <List items={this.state.items} onClick={this.onAddClick.bind(this)} />
-      <FetchList fetched={this.state.fetched} />
+      <FetchList fetched={this.state.fetched} onClick={this.onWatchedClick.bind(this)} />
     </div>)
   }
 }

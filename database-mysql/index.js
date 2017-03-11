@@ -19,4 +19,30 @@ var selectAll = function(callback) {
   });
 };
 
+var insertToDB = function (data, callback) {
+  connection.query(`INSERT IGNORE INTO movies (Title, Year) VALUES ('${data.Title}', '${data.Year}')`, function (err, results, fields){
+    if (err) {
+      console.log('error posting into the database')
+      callback(err, null)
+    } else {
+      console.log('Posted to the database')
+      callback(null, results);
+    }
+  });
+};
+
+var deleteFromDB = function (title, callback) {
+  connection.query(`DELETE FROM movies WHERE Title = '${title}'`, function (err, results, fields){
+    if (err) {
+      console.log('error deleting from database')
+      callback(err, null)
+    } else {
+      console.log('Deleted from database')
+      callback(null, results);
+    }
+  });
+};
+
 module.exports.selectAll = selectAll;
+module.exports.insertToDB = insertToDB;
+module.exports.deleteFromDB = deleteFromDB;
