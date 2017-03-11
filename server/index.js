@@ -18,6 +18,10 @@ app.get('/home', function(req, res) {
   res.status(200).send('<h1>Welcome to YMDB</h1>');
 })
 
+app.options('/items', function(req, res){
+  res.set(headers)
+})
+
 app.get('/items', function (req, res) {
   items.selectAll(function(err, data) {
     if(err) {

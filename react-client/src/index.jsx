@@ -19,7 +19,8 @@ class App extends React.Component {
   componentDidMount() {
     $.ajax({
       type: 'GET',
-      url: '/items',
+      url: 'http://127.0.0.1:3000/items',
+      contentType: 'application/json',
       success: (data) => {
         this.setState({
           items: data
