@@ -8,6 +8,7 @@ CREATE TABLE movies (
   id int NOT NULL AUTO_INCREMENT,
   Title VARCHAR(200) UNIQUE NOT NULL,
   Year varchar(50) NOT NULL,
+  Poster varchar(200) UNIQUE NOT NULL,
   PRIMARY KEY (ID)
 );
 

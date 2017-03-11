@@ -20,7 +20,7 @@ var selectAll = function(callback) {
 };
 
 var insertToDB = function (data, callback) {
-  connection.query(`INSERT IGNORE INTO movies (Title, Year) VALUES ('${data.Title}', '${data.Year}')`, function (err, results, fields){
+  connection.query(`INSERT IGNORE INTO movies (Title, Year, Poster) VALUES ('${data.Title}', '${data.Year}', '${data.Poster}')`, function (err, results, fields){
     if (err) {
       console.log('error posting into the database')
       callback(err, null)
