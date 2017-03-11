@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var items = require('../database-mysql');
+var request = require('request')
 /*var morgan = require('morgan');*/
 
 var headers = {
@@ -10,6 +11,10 @@ var headers = {
   'access-control-max-age': 10 // Seconds.
 };
 
+var initialOptions = {
+  url: 'http://www.omdbapi.com/?t=Star+Wars',
+}
+
 var app = express();
 
 app.use(bodyParser.json());
@@ -17,6 +22,16 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.get('/items', function (req, res) {
+  
+  request(initialOptions, function (error, response, body) {
+    console.log(body);
+  })
+
+
+
+
+
+
 
 /*  items.selectAll(function(err, data) {
     if(err) {
@@ -28,7 +43,7 @@ app.get('/items', function (req, res) {
     }
   });*/
 
-  res.status(200).set(headers).send('<h1>This is a test</h1>');
+  res.status(200).set(headers).send([{title:'PRUEBA', year: '1992'}]);
 });
 /*app.options('/items', function(req, res){
   console.log('OPTIONS')
