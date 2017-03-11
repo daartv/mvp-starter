@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
+import FetchList from './components/FetchList.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: [];
+      items: [],
+      fetched: [{Title:'Justice League', Year: '2017'}, {Title:'Spiderman', Year:'2017'}]
     }
   }
 
@@ -48,7 +50,7 @@ class App extends React.Component {
       success: (data) => {
         console.log(data)
         this.setState({
-          items: data
+          fetched: data
         })
       },
       error: (err) => {
@@ -62,6 +64,7 @@ class App extends React.Component {
       <Search onSearch={this.search.bind(this)}/>
       <h1>Enjoy your Sunday:</h1>
       <List items={this.state.items}/>
+      <FetchList fetched={this.state.fetched}/>
     </div>)
   }
 }
