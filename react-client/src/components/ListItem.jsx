@@ -11,7 +11,7 @@ class ListItem extends React.Component {
 
 render() {
 	return (
-  		<div key = {this.props.item.imdbID}>
+  		<div className='container' key = {this.props.item.imdbID}>
   		<img src={this.props.item.Poster} width='120px' height='200px'></img>
     		<h4> { this.props.item.Title } </h4>
     		<button className="btn btn-primary" onClick={this.post.bind(this)}>Add</button>

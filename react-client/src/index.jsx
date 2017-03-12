@@ -105,7 +105,7 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
+    return (<div className='container'>
       <Search onSearch={this.search.bind(this)}/>
       <h1>Enjoy your Sunday:</h1>
       <List items={this.state.items} onClick={this.onAddClick.bind(this)} />
