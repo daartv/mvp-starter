@@ -2,7 +2,7 @@ import React from 'react';
 import FetchListItem from './FetchListItem.jsx';
 
 const FetchList = (props) => (
-  <div>
+  <div className='container'>
     <h4> To Watch: </h4>
     <h3>There are { props.fetched.length } movies on your list:</h3>
     { props.fetched.map(item => <FetchListItem item={item} onClick={props.onClick} />)}
