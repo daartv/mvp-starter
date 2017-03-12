@@ -13,7 +13,6 @@ var selectAll = function(callback) {
       console.log('error retrieving from database')
       callback(err, null);
     } else {
-      console.log('retrieved from database')
       callback(null, results);
     }
   });
@@ -25,7 +24,6 @@ var insertToDB = function (data, callback) {
       console.log('error posting into the database')
       callback(err, null)
     } else {
-      console.log('Posted to the database')
       callback(null, results);
     }
   });
@@ -37,7 +35,6 @@ var deleteFromDB = function (title, callback) {
       console.log('error deleting from database')
       callback(err, null)
     } else {
-      console.log('Deleted from database')
       callback(null, results);
     }
   });
