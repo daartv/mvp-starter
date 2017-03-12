@@ -23,23 +23,23 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  The app to list all the movies you want to watch and like or unlike it!
+  The app to search and list all the movies you want to watch!
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
  Are you an avid movie watcher? Does the list of movies you want to watch start to pile up so much that it's hard to keep track? YMDB is for you.
- YMDB let's you create, edit, delete and see all the movies that you want to watch, and after you've done it, you can rate them to remind yourself to watch it a few more times or never speak about that experience ever again.
+ YMDB let's you create, edit, delete and see all the movies that you want to watch.
 
 ## Problem ##
   > Describe the problem your product solves.
 Ever been so swamped in work that you actually forget to keep track of the fun things to do on your sunday? YMDB will help turn those empty hours of your time into movie-watching packed hours of joy.
 
 ## Solution ##
-  YMDB let's you create a list of pending movies to watch, edit them, delete them and actually rate then once you've rated them.
+  YMDB let's you create a list of pending movies to watch by doing a search on IMDB's database!
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
-  "YMDB rating and list of movies is not controlled by critics or internet fans, it's controlled by the person and opinion that really matters to you, yourself." - Dario Arteaga, CEO of Daartv Inc.
+  "YMDB's list of movies is not controlled by critics or internet fans, it's controlled by the person and opinion that really matters to you, yourself." - Dario Arteaga, CEO of Daartv Inc.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
