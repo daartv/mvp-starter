@@ -15,7 +15,6 @@ class App extends React.Component {
   }
 
   search (term) {
-    console.log(`${term} was searched`);
     $.ajax({
       type:'POST',
       url:'http://127.0.0.1:3000/items',
@@ -34,7 +33,6 @@ class App extends React.Component {
   }
 
   onAddClick (movieID) {
-    console.log(`${movieID} was posted to server/database`);
     $.ajax({
       type: 'POST',
       url: 'http://127.0.0.1:3000/entry',
@@ -50,7 +48,6 @@ class App extends React.Component {
   }
 
   onWatchedClick(movieTitle) {
-  /*  console.log(`${movieTitle} was posted to server/database for deleting`);*/
     $.ajax({
       type: 'POST',
       url: 'http://127.0.0.1:3000/watch',
@@ -71,7 +68,6 @@ class App extends React.Component {
       url: 'http://127.0.0.1:3000/items',
       ContentType: 'text/plain',
       success: (data) => {
-        console.log(data)
         this.setState({
           fetched: data
         })

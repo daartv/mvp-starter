@@ -7,6 +7,7 @@ class ListItem extends React.Component {
 
   post () {
   	this.props.onClick(this.props.item.imdbID);
+  	this.forceUpdate();
   }
 
 render() {
