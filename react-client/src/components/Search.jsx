@@ -19,7 +19,7 @@ class Search extends React.Component {
   }
 
   render() {
-    return (<div>
+    return (<div className='page-header'>
       <h4>Search your movie!</h4>
       Enter a movie title: <input value={this.state.terms} onChange={this.onChange.bind(this)}/>     
       <button className='btn btn-warning' onClick={this.search.bind(this)}> Find movies! </button>
