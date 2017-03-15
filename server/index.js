@@ -46,11 +46,11 @@ app.post('/entry', function (req, res) {
         if (err) {
           console.log('errored out from posting to database server-side')
         } else {
+          res.status(201).set(headers).send(parsedBody);
         }
       })
     })
   })
-  res.status(201).set(headers).send();
 })
 
 app.post('/items', function (req, res) {
@@ -74,6 +74,7 @@ app.post('/watch', function (req, res) {
       if (err) {
         console.log('Errored out from deleting server-side')
       } else {
+        res.send(201);
       }
     })
   })
