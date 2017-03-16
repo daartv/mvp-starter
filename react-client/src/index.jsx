@@ -13,13 +13,28 @@ class App extends React.Component {
       fetched: []
     }
   }
+  componentDidMount() {
+    $.ajax({
+      type: 'GET',
+      url: 'http://127.0.0.1:3000/items',
+      contentType: 'application/json',
+      success: (data) => {
+        this.setState({
+          fetched: data
+        })
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+  }
 
   search (term) {
     $.ajax({
       type:'POST',
       url:'http://127.0.0.1:3000/items',
-      ContentType: 'text/plain',
-      data: term,
+      contentType: 'application/json',
+      data: JSON.stringify({term}),
       success: (data) => {
         this.setState({
           items: JSON.parse(data).Search
@@ -32,14 +47,15 @@ class App extends React.Component {
   }
 
   onAddClick (movieID) {
+    console.log(movieID);
+    var nFetched = this.state.fetched.slice();
     $.ajax({
+      url: '/entry',
       type: 'POST',
-      url: 'http://127.0.0.1:3000/entry',
-      ContentType: 'text/plain',
-      data: movieID,
+      contentType: 'application/json',
+      data: JSON.stringify({movieID}),
       success: (data) => {
         console.log('Succeed!')
-        var nFetched = this.state.fetched.slice();
         nFetched.push(data);
         this.setState({fetched: nFetched});
       },
@@ -50,43 +66,29 @@ class App extends React.Component {
   }
 
   onWatchedClick(movieTitle) {
+    console.log(movieTitle);
+    var nFetched = []
     $.ajax({
       type: 'POST',
       url: 'http://127.0.0.1:3000/watch',
-      ContentType:'text/plain',
-      data: movieTitle,
+      contentType:'application/json',
+      data: JSON.stringify({movieTitle}),
       success: (data) => {
-        var nFetched = this.state.fetched.slice();
-        for (var i = 0; i < nFetched.length; i++) {
-          console.log('nFetched Title', nFetched[i].Title);
-          console.log('movieTitle', movieTitle);
-          if (nFetched[i].Title === movieTitle) {
-            nFetched.splice(i);
+        console.log('fetched state', this.state.fetched)
+        console.log('New fetched state', nFetched)
+        for (var i = 0; i < this.state.fetched.length; i++) {
+          if (this.state.fetched[i].Title !== movieTitle) {
+            nFetched.push(this.state.fetched[i]);
           }
         }
         this.setState({fetched: nFetched});
       },
       error: (error) => {
         console.log('Errored out from watched button post');
-      }
+      } 
     });
   }
 
-  componentDidMount() {
-    $.ajax({
-      type: 'GET',
-      url: 'http://127.0.0.1:3000/items',
-      ContentType: 'text/plain',
-      success: (data) => {
-        this.setState({
-          fetched: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
-  }
 
   render () {
     return (<div className='container'>
