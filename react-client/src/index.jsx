@@ -56,25 +56,20 @@ class App extends React.Component {
       ContentType:'text/plain',
       data: movieTitle,
       success: (data) => {
+        var nFetched = this.state.fetched.slice();
+        for (var i = 0; i < nFetched.length; i++) {
+          console.log('nFetched Title', nFetched[i].Title);
+          console.log('movieTitle', movieTitle);
+          if (nFetched[i].Title === movieTitle) {
+            nFetched.splice(i);
+          }
+        }
+        this.setState({fetched: nFetched});
       },
       error: (error) => {
         console.log('Errored out from watched button post');
       }
     });
-     $.ajax({
-      type: 'GET',
-      url: 'http://127.0.0.1:3000/items',
-      ContentType: 'text/plain',
-      success: (data) => {
-        this.setState({
-          fetched: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
-
   }
 
   componentDidMount() {
